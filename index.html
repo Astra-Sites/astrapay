@@ -69,7 +69,7 @@
     }
     code {
       font-family: Consolas, Monaco, monospace;
-      color: #e6edf3;
+      /* color: #e6edf3; */
     }
     .nav-tabs .nav-link {
       color: #c9d1d9;
@@ -159,9 +159,16 @@
   <!-- Install -->
   <section class="container py-5 text-center">
     <h3 class="mb-4">Install</h3>
-    <pre><code>pip install astrapay</code></pre>
-    <pre><code>npm install astrapay</code></pre>
+    <pre class="text-center"><code class="language-bash">pip install astrapay</code></pre>
+    <pre class="text-center"><code class="language-bash">npm install astrapay</code></pre>
+    <pre class="text-center"><code class="language-bash">composer require astrasoftwares/astrapay</code></pre>
   </section>
+
+
+
+
+
+
 
   <!-- Examples -->
 
@@ -180,6 +187,7 @@
             <option value="react">React (API)</option>
             <option value="vue">Vue (API)</option>
             <option value="next">Next.js (API)</option>
+            <option value="php">PHP</option>
         </select>
     </div>
 
@@ -195,6 +203,7 @@
         <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#react" type="button">React (API)</button></li>
         <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#vue" type="button">Vue (API)</button></li>
         <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#next" type="button">Next.js (API)</button></li>
+        <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#php" type="button">PHP</button></li>
     </ul>
     </div>
 
@@ -216,7 +225,7 @@ print(res)</code></pre>
     </div>
 
     <!-- Flask -->
-    <div class="tab-pane fade" id="flask">
+<div class="tab-pane fade" id="flask">
 <pre><code class="language-python">from flask import Flask, request, jsonify
 from astrapay import AstraMpesa
 
@@ -351,6 +360,29 @@ export default async function handler(req, res) {
   }
 }</code></pre>
     </div>
+
+
+<!-- PHP -->
+<div class="tab-pane fade" id="php">
+<pre><code class="language-php"> // Install via Composer
+// composer require astrasoftwares/astrapay
+
+require 'vendor/autoload.php';
+
+use Astrapay\AstraMpesa;
+
+$client = new AstraMpesa([
+  'consumerKey' => 'YOUR_KEY',
+  'consumerSecret' => 'YOUR_SECRET',
+  'shortcode' => '174379',
+  'passkey' => 'YOUR_PASSKEY',
+  'callbackUrl' => 'https://yourdomain.com/callback'
+]);
+
+$response = $client->pay('254712345678', 10);
+print_r($response);</code></pre>
+</div>
+
   </div>
 </section>
 
@@ -418,9 +450,24 @@ export default async function handler(req, res) {
     });
   </script>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-python.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-javascript.min.js"></script>
+<!-- Bootstrap Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+
+<!-- Prism.js Core -->
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+
+<!-- Required for PHP highlighting -->
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-markup-templating.min.js"></script>
+
+<!-- Prism.js Language Components -->
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-python.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-javascript.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-php.min.js"></script>
+
+<!-- Call highlight -->
+<script>Prism.highlightAll();</script>
+
 </body>
 </html>
