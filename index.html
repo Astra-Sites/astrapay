@@ -1,7 +1,3 @@
-
-
-
-
 <!DOCTYPE html>
 <html lang="en" data-bs-theme="dark">
 <head>
@@ -188,6 +184,7 @@
             <option value="vue">Vue (API)</option>
             <option value="next">Next.js (API)</option>
             <option value="php">PHP</option>
+            <option value="laravel">Laravel</option>
         </select>
     </div>
 
@@ -204,13 +201,17 @@
         <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#vue" type="button">Vue (API)</button></li>
         <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#next" type="button">Next.js (API)</button></li>
         <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#php" type="button">PHP</button></li>
+        <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#laravel" type="button">Laravel</button></li>
     </ul>
     </div>
 
   <div class="tab-content">
     <!-- Python -->
     <div class="tab-pane fade show active" id="python">
-<pre><code class="language-python">from astrapay import AstraMpesa
+<pre><code class="language-python">
+# pip install astrapay
+
+from astrapay import AstraMpesa
 
 client = AstraMpesa(
   consumer_key="YOUR_KEY",
@@ -226,7 +227,10 @@ print(res)</code></pre>
 
     <!-- Flask -->
 <div class="tab-pane fade" id="flask">
-<pre><code class="language-python">from flask import Flask, request, jsonify
+<pre><code class="language-javascript">
+// npm install astrapay
+
+from flask import Flask, request, jsonify
 from astrapay import AstraMpesa
 
 app = Flask(__name__)
@@ -247,8 +251,11 @@ def pay():
     </div>
 
     <!-- Django -->
-    <div class="tab-pane fade" id="django">
-<pre><code class="language-python">from django.http import JsonResponse
+  <div class="tab-pane fade" id="django">
+<pre><code class="language-python">
+# pip install astrapay
+
+from django.http import JsonResponse
 from astrapay import AstraMpesa
 
 client = AstraMpesa(
@@ -268,7 +275,10 @@ def pay_view(request):
 
     <!-- Node.js -->
     <div class="tab-pane fade" id="node">
-<pre><code class="language-javascript">const AstraPay = require("astrapay");
+<pre><code class="language-javascript">
+  // npm install astrapay
+
+const AstraPay = require("astrapay");
 
 const client = new AstraPay({
   consumerKey: "YOUR_KEY",
@@ -284,8 +294,11 @@ client.pay({ phone: "254712345678", amount: 10 })
     </div>
 
     <!-- Express.js -->
-    <div class="tab-pane fade" id="express">
-<pre><code class="language-javascript">const express = require("express");
+<div class="tab-pane fade" id="express">
+<pre><code class="language-javascript">
+// npm install astrapay
+
+const express = require("express");
 const AstraPay = require("astrapay");
 const app = express();
 app.use(express.json());
@@ -309,7 +322,10 @@ app.listen(3000);</code></pre>
 
     <!-- React -->
     <div class="tab-pane fade" id="react">
-<pre><code class="language-javascript">// React frontend using Fetch API
+<pre><code class="language-javascript">
+  // React frontend using Fetch API
+    // npm install astrapay
+
 fetch("/pay", {
   method: "POST",
   headers: { "Content-Type": "application/json" },
@@ -321,7 +337,10 @@ fetch("/pay", {
 
     <!-- Vue -->
     <div class="tab-pane fade" id="vue">
-<pre><code class="language-javascript">// Vue.js setup
+<pre><code class="language-javascript">
+  // Vue.js setup
+// npm install astrapay
+
 export default {
   methods: {
     pay() {
@@ -338,28 +357,34 @@ export default {
     </div>
 
     <!-- Next.js -->
-    <div class="tab-pane fade" id="next">
-<pre><code class="language-javascript">// pages/api/pay.js
-import AstraPay from "astrapay";
+<div class="tab-pane fade" id="next">
+  <pre>
+    <code class="language-javascript"> 
+      // pages/api/pay.js
+      // npm install astrapay
 
-const client = new AstraPay({
-  consumerKey: process.env.KEY,
-  consumerSecret: process.env.SECRET,
-  shortcode: "174379",
-  passkey: process.env.PASSKEY,
-  callbackUrl: "https://yourdomain.com/callback"
-});
+      import AstraPay from "astrapay";
 
-export default async function handler(req, res) {
-  if (req.method === "POST") {
-    const { phone, amount } = req.body;
-    const result = await client.pay({ phone, amount });
-    res.status(200).json(result);
-  } else {
-    res.status(405).end(); // Method Not Allowed
-  }
-}</code></pre>
-    </div>
+      const client = new AstraPay({
+        consumerKey: process.env.KEY,
+        consumerSecret: process.env.SECRET,
+        shortcode: "174379",
+        passkey: process.env.PASSKEY,
+        callbackUrl: "https://yourdomain.com/callback"
+      });
+
+      export default async function handler(req, res) {
+        if (req.method === "POST") {
+          const { phone, amount } = req.body;
+          const result = await client.pay({ phone, amount });
+          res.status(200).json(result);
+        } else {
+          res.status(405).end(); // Method Not Allowed
+        }
+     }
+   </code>
+  </pre>
+</div>
 
 
 <!-- PHP -->
@@ -381,6 +406,31 @@ $client = new AstraMpesa([
 
 $response = $client->pay('254712345678', 10);
 print_r($response);</code></pre>
+</div>
+
+<!-- laravel -->
+<div class="tab-pane fade" id="laravel">
+<pre><code class="language-php"> // Install via Composer
+// composer require astrasoftwares/astrapay
+
+require 'vendor/autoload.php';
+
+use Astrapay\AstraMpesa;
+
+public function stkPush(Request $request)
+{
+    $client = new AstraMpesa([
+        'consumerKey' => env('MPESA_CONSUMER_KEY'),
+        'consumerSecret' => env('MPESA_CONSUMER_SECRET'),
+        'shortcode' => env('MPESA_SHORTCODE'),
+        'passkey' => env('MPESA_PASSKEY'),
+        'callbackUrl' => env('MPESA_CALLBACK_URL')
+    ]);
+
+    $response = $client->pay($request->phone, $request->amount);
+
+    return response()->json($response);
+}</code></pre>
 </div>
 
   </div>
